@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class NumberConverterMain 
+{
+    public static void main(String[] args) {
+        Scanner scan;
+        long binary;
+        scan = new Scanner(System.in);
+        System.out.print( " Enter binary number (exit to quit): " );
+        binary = scan.nextLong();
+        scan.close();
+        System.out.printf( " %20s %20s %20s %n", "Binary", "Decimal", "Hexadecimal" );
+        System.out.printf("%20d", binary);
+        int decimalNumber = 0; 
+        int i = 0;
+        long remainder;
+        String hexNum = "";
+        char hex;
+
+        while ( binary != 0) {
+          remainder = binary % 10;
+          binary /= 10;
+          decimalNumber += remainder * Math.pow(2, i);
+          ++i;
+        }
+        
+        System.out.printf( " %20d ", decimalNumber);
+
+        while (decimalNumber != 0) {
+            remainder = decimalNumber % 16;
+ 
+            if (remainder >= 10){
+                hex = (char) (remainder-10+65);
+                hexNum = hex + hexNum;
+            }
+
+            else{   
+                hexNum = remainder + hexNum;
+            }
+            decimalNumber /= 16;
+        }
+        System.out.printf( " %20s ", hexNum);
+                
+    }    
+}
