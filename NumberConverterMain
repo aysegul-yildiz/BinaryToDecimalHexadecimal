@@ -3,29 +3,39 @@ import java.util.Scanner;
 public class NumberConverterMain 
 {
     public static void main(String[] args) {
+        // declare variables
         Scanner scan;
         long binary;
         scan = new Scanner(System.in);
+
+        // ask the user to input a binary number or enter "exit" to quit.
         System.out.print( " Enter binary number (exit to quit): " );
         binary = scan.nextLong();
         scan.close();
+
+        // display the table header
         System.out.printf( " %20s %20s %20s %n", "Binary", "Decimal", "Hexadecimal" );
         System.out.printf("%20d", binary);
+
+        // create needed variables to calculate decimal and hexadecimal
         int decimalNumber = 0; 
         int i = 0;
         long remainder;
         String hexNum = "";
         char hex;
 
+        // calculate the deciamal value of the binary input
         while ( binary != 0) {
           remainder = binary % 10;
           binary /= 10;
           decimalNumber += remainder * Math.pow(2, i);
           ++i;
         }
-        
+
+        // print the decimal
         System.out.printf( " %20d ", decimalNumber);
 
+        // calculate hexadecimal value of the binary input
         while (decimalNumber != 0) {
             remainder = decimalNumber % 16;
  
@@ -33,13 +43,11 @@ public class NumberConverterMain
                 hex = (char) (remainder-10+65);
                 hexNum = hex + hexNum;
             }
-
             else{   
                 hexNum = remainder + hexNum;
             }
             decimalNumber /= 16;
         }
-        System.out.printf( " %20s ", hexNum);
-                
+        System.out.printf( " %20s ", hexNum);         
     }    
 }
